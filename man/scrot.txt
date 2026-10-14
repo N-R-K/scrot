@@ -46,7 +46,9 @@ OPTIONS
                             exits without taking a screenshot and space will
                             start the rectangle select mode. An additional
                             press of space is then required to finalize a
-                            screenshot.
+                            screenshot. Holding Control during navigation will
+                            slow it down to 1px per keypress, Shift speeds it
+                            up.
   -k, --stack[=OPT]         Capture stack/overlapped windows and join them. A
                             running Composite Manager is needed for it to work
                             correctly. OPT is optional join letter: v/h
