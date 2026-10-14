@@ -526,6 +526,8 @@ void optionsParse(int argc, char *argv[])
         errx(EXIT_FAILURE, "output file cannot be empty");
     if (opt.outputFile[outputFileLen - 1] == '/')
         errx(EXIT_FAILURE, "output file cannot be a directory");
+    if (opt.ignoreKeyboard && opt.useKeyboard)
+        errx(EXIT_FAILURE, "ignore keyboard and keyboard control cannot be set at the same time");
 
     if (opt.thumb != THUMB_DISABLED)
         opt.thumbFile = optionsNameThumbnail(opt.outputFile);

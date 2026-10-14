@@ -112,11 +112,6 @@ int main(int argc, char *argv[])
 
     optionsParse(argc, argv);
 
-    if (opt.ignoreKeyboard && opt.useKeyboard) {
-      fprintf(stderr, "scrot: can not read input from keyboard if also set to be ignored\n");
-      return 1;
-    }
-
     initXAndImlib(opt.display, 0);
 
     if (opt.mode == MODE_SELECT)
