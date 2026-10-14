@@ -242,8 +242,7 @@ static bool scrotSelectionGetUserSel(struct SelectionRect *selectionRect)
                 target = scrotGetWindow(disp, ev.xbutton.subwindow, ev.xbutton.x, ev.xbutton.y);
                 if (target == None)
                     target = root;
-            } 
-            else {
+            } else {
                 done = DONE;
             }
             break;
@@ -312,8 +311,7 @@ static bool scrotSelectionGetUserSel(struct SelectionRect *selectionRect)
                     if (!isStartSelectionKeyPressed && !isButtonPressed) {
                         isStartSelectionKeyPressed = true;
                         rx = p.x; ry = p.y;
-                    }
-                    else {
+                    } else {
                         done = DONE;
                     }
                     break;
@@ -335,33 +333,30 @@ static bool scrotSelectionGetUserSel(struct SelectionRect *selectionRect)
 
             if (done == WAIT) {
                 if (opt.useKeyboard) {
-                    if ((isStartSelectionKeyPressed || isButtonPressed)
-                        && ev.xkey.state & Mod1Mask) {
+                    if ((isStartSelectionKeyPressed || isButtonPressed) &&
+                        ev.xkey.state & Mod1Mask)
+                    {
                         rx = r.x; ry = r.y;
                         scrotSelectionMotionDraw(rx, ry,
                             ev.xkey.x_root, ev.xkey.y_root);
-                    } 
-                    else {
+                    } else {
                         if (p.x != ev.xkey.x_root || p.y != ev.xkey.y_root)
                             XWarpPointer(disp, None, root, 0, 0, 0, 0, p.x, p.y);
                         if (isStartSelectionKeyPressed && (rx != p.x || ry != p.y))
                             scrotSelectionMotionDraw(rx, ry, p.x, p.y);
                     }
-                }
-                else {
+                } else {
                     if (isButtonPressed) {
                         rx = r.x; ry = r.y;
                         scrotSelectionMotionDraw(rx, ry, ev.xkey.x, ev.xkey.y);
-                    } 
-                    else {
+                    } else {
                         done = ABORT;
                     }
                 }
             }
 
-            if (done == ABORT) {
+            if (done == ABORT)
                 warnx("Key was pressed, aborting shot");
-            }
 
             XFree(keysym);
             break;
