@@ -257,8 +257,10 @@ static bool scrotSelectionGetUserSel(struct SelectionRect *selectionRect)
             int keycode; /*dummy*/
             struct Point p = { ev.xkey.x, ev.xkey.y };
             struct Point r = { rx, ry };
-            int delta = (ev.xkey.state & ControlMask) ? 1 :
-                ((ev.xkey.state & ShiftMask) ? 128 : 16);
+            int delta = 1;
+
+            if (opt.useKeyboard && !(ev.xkey.state & ControlMask))
+                delta = (ev.xkey.state & ShiftMask) ? 128 : 16;
 
             if (opt.ignoreKeyboard)
                 break;
